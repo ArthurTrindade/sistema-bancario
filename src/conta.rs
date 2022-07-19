@@ -15,7 +15,7 @@ pub fn menu_gerenciar_conta() {
         println!("7 - Exibir um extrato de uma conta.");
         println!("8 - Sair");
 
-        let opcao: i32 = parse_i32(get_input());
+        let opcao: i32 = parse_i32(get_input("\nEscolha uma opção: "));
 
         match opcao {
             1 => println!("Cadastrar cliente"),

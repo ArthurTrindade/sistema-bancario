@@ -1,21 +1,7 @@
 use crate::utilitario::{clear, get_input, parse_i32};
 
-pub struct Cliente {
-    pub codigo: u16,
-    pub nome: String,
-    pub cpf: String,
-    pub telefone: String,
-    pub endereco: String
-}
-
-impl Cliente {
-    //pub fn new()
-    
-}
-
 pub fn menu_gerenciar_cliente() {
     clear();
-
     loop {
         println!("=========== Gerenciar Clientes ============");
         println!("Digite um comando para prosseguir: ");
@@ -26,7 +12,7 @@ pub fn menu_gerenciar_cliente() {
         println!("5 Excluir um cliente cadastrado");
         println!("6 - Sair");
 
-        let opcao: i32 = parse_i32(get_input());
+        let opcao: i32 = parse_i32(get_input("\nEscolha uma opção: "));
 
         match opcao {
             1 => println!("Cadastrar cliente"),
