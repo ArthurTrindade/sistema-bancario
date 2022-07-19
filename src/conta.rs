@@ -1,3 +1,4 @@
+use colored::*;
 use crate::utilitario::{clear, get_input, parse_i32};
 
 pub fn menu_gerenciar_conta() {
@@ -29,7 +30,10 @@ pub fn menu_gerenciar_conta() {
                 clear();
                 break;
             }
-            _ => println!("** Comando inválido digite uma opção válida!! **")
+            _ => {
+                clear();
+                println!("{}", "\n** Comando inválido digite uma opção válida!! **\n".red())
+            }
         }
     }
 }

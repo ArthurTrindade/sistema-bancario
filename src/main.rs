@@ -2,7 +2,9 @@ mod cliente;
 mod conta;
 mod utilitario;
 
-use crate::cliente::{menu_gerenciar_cliente};
+use colored::*;
+
+use crate::cliente::menu_gerenciar_cliente;
 use crate::conta::menu_gerenciar_conta;
 use crate::utilitario::{clear, get_input, parse_i32};
 
@@ -31,7 +33,10 @@ fn menu_principal() {
                 println!("Até main!!");
                 break;
             }
-            _ => println!("** Comando inválido digite uma opção válida!! **")
+            _ => {
+                clear();
+                println!("{}", "\n** Comando inválido digite uma opção válida!! **\n".red())
+            }
         }
     }
 }
