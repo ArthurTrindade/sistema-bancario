@@ -1,5 +1,5 @@
 use colored::*;
-use crate::utilitario::{clear, get_input, parse_i32};
+use crate::utilitario::{clear, get_input};
 
 
 #[derive(Debug)]

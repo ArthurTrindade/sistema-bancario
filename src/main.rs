@@ -7,7 +7,7 @@ use text_io::*;
 
 use crate::cliente::menu_gerenciar_cliente;
 use crate::conta::menu_gerenciar_conta;
-use crate::utilitario::{clear, get_input, parse_i32};
+use crate::utilitario::{clear, get_input};
 
 use cliente::Cliente;
 
