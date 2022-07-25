@@ -1,27 +1,49 @@
 use colored::*;
 use crate::utilitario::{clear, get_input, parse_i32};
 
+
+#[derive(Debug)]
+pub struct Cliente {
+    pub codigo: i32,
+    pub cpf: String,
+    pub nome: String,
+    pub telefone: String,
+    pub endereco: String
+}
+
+impl Cliente {
+
+    pub fn new(codigo: i32, nome: String, cpf: String, telefone: String, endereco: String) -> Self {
+        Self { codigo, cpf, nome, telefone, endereco }
+    }  
+    
+    pub fn mostrar_cliente(&self) {
+        println!("CÓDIGO: {}\nNOME: {}\nCPF: {}\nTELEFONE: {}\nENDEREÇO: {}\n", self.codigo, self.nome, self.cpf, self.telefone, self.endereco)
+    }
+
+}
+
 pub fn menu_gerenciar_cliente() {
     clear();
     loop {
         println!("=========== Gerenciar Clientes ============");
         println!("Digite um comando para prosseguir: ");
-        println!("1 - Cadastrar um cliente");
-        println!("2 - Listar todos os clientes cadastrados");
-        println!("3 - Buscar cliente já cadastrado");
-        println!("4 - Atualizar um cliente cadastrado");
-        println!("5 Excluir um cliente cadastrado");
-        println!("6 - Sair");
+        println!("C - Cadastrar um cliente");
+        println!("L - Listar todos os clientes cadastrados");
+        println!("B - Buscar cliente já cadastrado");
+        println!("A - Atualizar um cliente cadastrado");
+        println!("E Excluir um cliente cadastrado");
+        println!("S - Sair");
 
-        let opcao: i32 = parse_i32(get_input("\nEscolha uma opção: "));
+        let opcao: &str = &get_input("\nEscolha uma opção: ").to_uppercase();
 
         match opcao {
-            1 => println!("Cadastrar cliente"),
-            2 => println!("Listar todos os clientes cadastrados"),
-            3 => println!("Buscar cliente já cadastrado"),
-            4 => println!("Atualizar um cliente cadastrado"),
-            5 => println!("Excluir um cliente cadastrado"),
-            6 => {
+            "C" => println!("\nCadastrar cliente\n"),
+            "L" => println!("\nListar todos os clientes cadastrados\n"),
+            "B" => println!("\nBuscar cliente já cadastrado\n"),
+            "A" => println!("\nAtualizar um cliente cadastrado\n"),
+            "E" => println!("\nExcluir um cliente cadastrado\n"),
+            "S" => {
                 clear();
                 break;
             }
