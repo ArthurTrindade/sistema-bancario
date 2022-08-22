@@ -1,6 +1,9 @@
 use colored::*;
 use crate::utilitario::{clear, get_input};
 
+pub const QTD_MAX_CLIENTES: usize = 200;
+
+pub static mut CLIENTES: Vec<Cliente> = Vec::new();
 
 #[derive(Debug)]
 pub struct Cliente {
@@ -12,6 +15,10 @@ pub struct Cliente {
 }
 
 impl Cliente {
+
+    pub fn menu_cadastrar_cliente() {
+       print!("\n=========== Cadastro de Clientes ===========\n");
+    }
 
     pub fn new(codigo: i32, nome: String, cpf: String, telefone: String, endereco: String) -> Self {
         Self { codigo, cpf, nome, telefone, endereco }
@@ -38,7 +45,7 @@ pub fn menu_gerenciar_cliente() {
         let opcao: &str = &get_input("\nEscolha uma opção: ").to_uppercase();
 
         match opcao {
-            "C" => println!("\nCadastrar cliente\n"),
+            "C" => Cliente::menu_cadastrar_cliente(),
             "L" => println!("\nListar todos os clientes cadastrados\n"),
             "B" => println!("\nBuscar cliente já cadastrado\n"),
             "A" => println!("\nAtualizar um cliente cadastrado\n"),

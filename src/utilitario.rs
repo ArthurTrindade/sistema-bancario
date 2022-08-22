@@ -1,5 +1,7 @@
 use std::io;
 
+pub const MSG_ERROR_INPUT: &'static str = "\n** Comando inválido digite uma opção válida!! **\n";
+
 pub fn get_input(prompt: &str) -> String {
     println!("{}",prompt);
     let mut input = String::new();

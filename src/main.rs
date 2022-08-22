@@ -1,24 +1,22 @@
-mod cliente;
-mod conta;
-mod utilitario;
+use sistema_bancario::*;
+
+use crate::utilitario::*;
+use crate::cliente::*;
+use crate::conta::*;
 
 use colored::*;
-use text_io::*;
-
-use crate::cliente::menu_gerenciar_cliente;
-use crate::conta::menu_gerenciar_conta;
-use crate::utilitario::{clear, get_input};
-
-use cliente::Cliente;
 
 fn main() {
+    
+    // /let mut CLIENTES: Vec<Cliente> = Vec::new();
 
-    // let mut pessoas: Vec<Cliente> = Vec::with_capacity(200);
+    // let pessoa1: Cliente = Cliente { codigo: (1), cpf: String::from("Arthur"), nome: String::from("Arthur"), telefone: String::from("Arthur"), endereco: String::from("Arthur") };
 
-    // let pessoa1: Cliente = Cliente::new(1, String::from("Arthur"), String::from("048.381.091-64"), String::from("62 991457490"), String::from("Rua Maranhão, 568"));
+    // unsafe { CLIENTES.push(pessoa1) };
 
-    // pessoa1.mostrar_cliente();
-
+    // for cliente in unsafe { CLIENTES.iter() } {
+    //     cliente.mostrar_cliente();
+    // }
 
 
     menu_principal();
@@ -46,7 +44,7 @@ fn menu_principal() {
             }
             _ => {
                 clear();
-                println!("{}", "\n** Comando inválido digite uma opção válida!! **\n".red())
+                println!("{}", MSG_ERROR_INPUT.red());
             }
         }
     }
