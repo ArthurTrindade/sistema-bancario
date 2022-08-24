@@ -15,18 +15,46 @@ pub struct Cliente {
 }
 
 impl Cliente {
-
-    pub fn menu_cadastrar_cliente() {
-       print!("\n=========== Cadastro de Clientes ===========\n");
-    }
-
+    
     pub fn new(codigo: i32, nome: String, cpf: String, telefone: String, endereco: String) -> Self {
         Self { codigo, cpf, nome, telefone, endereco }
-    }  
+    }
+    
+    pub fn menu_cadastrar_cliente() {
+       print!("\n=========== Cadastro de Clientes ===========\n");
+       if unsafe { CLIENTES.len() } == QTD_MAX_CLIENTES {
+            println!("Limite de Cliente atingidos!");
+       }
+       
+       let cliente: Cliente = Cliente::ler_dados_cliente();
+       
+       cliente.cadastrar_cliente();
+    }
+
+    pub fn ler_dados_cliente() -> Cliente {
+        let codigo: i32 = 1;
+        let nome: String = get_input("Digite um nome: ");
+        let cpf: String = get_input("Digite um cpf: ");
+        let telefone: String = get_input("Digite um telefone: ");
+        let endereco: String = get_input("Digite um endereco: ");
+    
+        let cliente: Cliente = Cliente::new(codigo, nome, cpf, telefone, endereco);
+        cliente
+    }
+
+    pub fn cadastrar_cliente(self) {
+        unsafe { CLIENTES.push(self) }
+    }
     
     pub fn mostrar_cliente(&self) {
-        println!("CÓDIGO: {}\nNOME: {}\nCPF: {}\nTELEFONE: {}\nENDEREÇO: {}\n", self.codigo, self.nome, self.cpf, self.telefone, self.endereco)
+        println!();
+        println!("Código  : {}", self.codigo);
+        println!("Nome    : {}", self.nome);
+        println!("CPF/CNPJ: {}", self.cpf);
+        println!("Telefone: {}", self.telefone);
+        println!("Endereço: {}", self.endereco);
     }
+
 
 }
 
