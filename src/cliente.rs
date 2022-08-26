@@ -19,17 +19,6 @@ impl Cliente {
     pub fn new(codigo: i32, nome: String, cpf: String, telefone: String, endereco: String) -> Self {
         Self { codigo, cpf, nome, telefone, endereco }
     }
-    
-    pub fn menu_cadastrar_cliente() {
-       print!("\n=========== Cadastro de Clientes ===========\n");
-       if unsafe { CLIENTES.len() } == QTD_MAX_CLIENTES {
-            println!("Limite de Cliente atingidos!");
-       }
-       
-       let cliente: Cliente = Cliente::ler_dados_cliente();
-       
-       cliente.cadastrar_cliente();
-    }
 
     pub fn ler_dados_cliente() -> Cliente {
         let codigo: i32 = 1;
@@ -46,6 +35,17 @@ impl Cliente {
         unsafe { CLIENTES.push(self) }
     }
     
+    pub fn menu_cadastrar_cliente() {
+       print!("\n=========== Cadastro de Clientes ===========\n");
+       if unsafe { CLIENTES.len() } == QTD_MAX_CLIENTES {
+            println!("Limite de Cliente atingidos!");
+       }
+       
+       let cliente: Cliente = Cliente::ler_dados_cliente();
+       
+       cliente.cadastrar_cliente();
+    }
+
     pub fn mostrar_cliente(&self) {
         println!();
         println!("Código  : {}", self.codigo);
@@ -53,8 +53,20 @@ impl Cliente {
         println!("CPF/CNPJ: {}", self.cpf);
         println!("Telefone: {}", self.telefone);
         println!("Endereço: {}", self.endereco);
+        println!();
     }
 
+    pub fn menu_listar_clientes() {    
+        println!("\n=========== Listagem de Clientes ============");
+        if unsafe { CLIENTES.len() } <= 0 {
+            println!("{}", "** Nenhume Cliente Cadastrado **\n".red());
+        }
+
+        for cliente in unsafe { CLIENTES.iter() } {
+            cliente.mostrar_cliente();
+        }
+
+    }
 
 }
 
@@ -67,14 +79,14 @@ pub fn menu_gerenciar_cliente() {
         println!("L - Listar todos os clientes cadastrados");
         println!("B - Buscar cliente já cadastrado");
         println!("A - Atualizar um cliente cadastrado");
-        println!("E Excluir um cliente cadastrado");
+        println!("E - Excluir um cliente cadastrado");
         println!("S - Sair");
 
         let opcao: &str = &get_input("\nEscolha uma opção: ").to_uppercase();
 
         match opcao {
             "C" => Cliente::menu_cadastrar_cliente(),
-            "L" => println!("\nListar todos os clientes cadastrados\n"),
+            "L" => Cliente::menu_listar_clientes(),
             "B" => println!("\nBuscar cliente já cadastrado\n"),
             "A" => println!("\nAtualizar um cliente cadastrado\n"),
             "E" => println!("\nExcluir um cliente cadastrado\n"),
